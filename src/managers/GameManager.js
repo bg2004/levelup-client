@@ -1,36 +1,44 @@
-export const getEvents = () => {
-    return fetch("http://localhost:8000/events", {
+export const getGames = () => {
+    return fetch("http://localhost:8000/games", {
         headers:{
             "Authorization": `Token ${localStorage.getItem("lu_token")}`
         }
     })
         .then(response => response.json())
 }
-
-export const createEvent = (event) => {
-    return fetch("http://localhost:8000/events", {
+export const createGame = (game) => {
+    return fetch("http://localhost:8000/games", {
         method: "POST", 
         headers:{
             "Authorization":`Token ${localStorage.getItem("lu_token")}`,
             "Content-Type": "application/json"
         },
-        body: JSON.stringify(event)
+        body: JSON.stringify(game)
     })
 }
 
-export const UpdateEvent = (event, eventId) => {
-    return fetch(`http://localhost:8000/events/${eventId}`, {
+export const getGenres = () => {
+    return fetch("http://localhost:8000/genres", { 
+        headers:{
+            "Authorization":`Token ${localStorage.getItem("lu_token")}`
+        }
+    })
+        .then((response => response.json()))
+}
+
+export const UpdateGame = (game, gameId) => {
+    return fetch(`http://localhost:8000/games/${gameId}`, {
         method: "PUT", 
         headers:{
             "Authorization":`Token ${localStorage.getItem("lu_token")}`,
             "Content-Type": "application/json"
         },
-        body: JSON.stringify(event)
+        body: JSON.stringify(game)
     })
 }
 
-export const getSingleEvent = (eventId) => {
-    return fetch(`http://localhost:8000/events/${eventId}`, {
+export const getSingleGame = (gameId) => {
+    return fetch(`http://localhost:8000/games/${gameId}`, {
         method: "GET",
         headers:{
             "Authorization": `Token ${localStorage.getItem("lu_token")}`
@@ -39,8 +47,9 @@ export const getSingleEvent = (eventId) => {
         .then(response => response.json())
 }
 
-export const deleteEvent = (eventId) => {
-    return fetch(`http://localhost:8000/events/${eventId}`, {
+export const deleteGame = (id) => {
+    return fetch(`http://localhost:8000/games/${id}`, 
+    {
         method: "DELETE",
         headers:{
             "Authorization": `Token ${localStorage.getItem("lu_token")}`
